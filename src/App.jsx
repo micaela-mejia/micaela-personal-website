@@ -6,7 +6,7 @@ import profileImage from './assets/profile.png'
 // You can edit the text here without needing to change the layout below.
 // Change these details to make this website yours.
 const siteInfo = {
-  name: 'Capybara WiCSE',
+  name: 'Micaela Mejia',
   role: 'Computer science student',
   intro: 'I am learning how to build useful things with code, one small project at a time.',
   // Replace profile.png in src/assets to use your own profile picture.
