@@ -18,7 +18,7 @@ const siteInfo = {
   skills: ['JavaScript', 'Python', 'React', 'HTML & CSS', 'Git & GitHub'],
   // Add a new project by copying one of these lines and changing its words.
   projects: [
-    { title: 'ReefWatch Miami', description: 'Interactive website to educate users about Miami’s marine life with an tntegrated Roboflow-trained fish identification model.', tag: 'Web Development'},
+    { title: 'ReefWatch Miami', description: 'Interactive website to educate users about Miami’s marine life with an integrated Roboflow-trained fish identification model.', tag: 'Web Development'},
     { title: 'Calculator', description: 'A simple calculator.', tag: 'Python project' },
     { title: 'Your swamphacks project...', description: 'Coming Soon.', tag: 'TBD' },
   ],
