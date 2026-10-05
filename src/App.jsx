@@ -7,24 +7,25 @@ import profileImage from './assets/profile.png'
 // Change these details to make this website yours.
 const siteInfo = {
   name: 'Micaela Mejia',
-  role: 'Computer science student',
+  role: 'Computer Science Student',
   intro: 'I am learning how to build useful things with code, one small project at a time.',
   // Replace profile.png in src/assets to use your own profile picture.
   image: profileImage,
   location: 'Based in Gainesville, FL',
-  email: 'capybara@ufl.edu',
+  email: 'micaelamejia@ufl.edu',
   about: 'I enjoy solving puzzles, learning new tools, and working with people who are curious. This website is a place to share what I am learning and making.',
   // Add, remove, or rename languages and tools in this list.
   skills: ['JavaScript', 'Python', 'React', 'HTML & CSS', 'Git & GitHub'],
   // Add a new project by copying one of these lines and changing its words.
   projects: [
+    { title: 'ReefWatch Miami', description: 'Interactive website to educate users about Miami’s marine life with an tntegrated Roboflow-trained fish identification model.', tag: 'Web Development'},
     { title: 'Calculator', description: 'A simple calculator.', tag: 'Python project' },
     { title: 'Your swamphacks project...', description: 'Coming Soon.', tag: 'TBD' },
   ],
   // Add your social links here. You can remove any of these if you don't want them to show up.
   links: {
-    github: 'https://github.com/your-username',
-    linkedin: 'https://www.linkedin.com/in/your-username',
+    github: 'https://github.com/micaela-mejia',
+    linkedin: 'https://www.linkedin.com/in/micaelakmejia',
   },
 }
 
@@ -42,7 +43,7 @@ function App() {
           {/* This side contains the introduction text. */}
           <div className="hero-copy">
             <p className="eyebrow">{siteInfo.role}</p>
-            <h1>Hi, I’m {firstName}.</h1>
+            <h1>Hello, I’m {firstName}!</h1>
             <p className="intro">{siteInfo.intro}</p>
           </div>
 
