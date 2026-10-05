@@ -43,7 +43,7 @@ function App() {
           {/* This side contains the introduction text. */}
           <div className="hero-copy">
             <p className="eyebrow">{siteInfo.role}</p>
-            <h1>Hello, I’m {firstName}!</h1>
+            <h1>Hello,<br />I’m {firstName}!</h1>
             <p className="intro">{siteInfo.intro}</p>
           </div>
 
