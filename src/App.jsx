@@ -10,6 +10,7 @@ const siteInfo = {
   role: 'Computer Science Student',
   intro: 'I am learning how to build useful things with code, one small project at a time.',
   // Replace profile.png in src/assets to use your own profile picture.
+  //add ur codeArt self-portrait
   image: profileImage,
   location: 'Based in Gainesville, FL',
   email: 'micaelamejia@ufl.edu',
