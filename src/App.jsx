@@ -1,4 +1,5 @@
 // This file contains the website's content and component structure
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import profileImage from './assets/profile.png'
 
@@ -8,20 +9,25 @@ import profileImage from './assets/profile.png'
 const siteInfo = {
   name: 'Micaela Mejia',
   role: 'Computer Science Student',
-  intro: 'I am learning how to build useful things with code, one small project at a time.',
+  intro: 'A student learning to code, experimenting with ideas, and creating things that make an impact.',
   // Replace profile.png in src/assets to use your own profile picture.
   //add ur codeArt self-portrait
   image: profileImage,
   location: 'Based in Gainesville, FL',
   email: 'micaelamejia@ufl.edu',
-  about: 'I enjoy solving puzzles, learning new tools, and working with people who are curious. This website is a place to share what I am learning and making.',
+  about: "I'm a Computer Science student at the University of Florida, pursuing a bachelor's degree in Computer Science. I've been exploring computer science through coursework, creative coding, and hands-on projects since high school. I'm familiar with Python, C++, HTML, CSS, and JavaScript, and I'm continuing to develop my skills in software development, web development, and other areas of computer science. During high school, I participated in Code/Art, where I was a finalist in the self-portrait category for two years and worked with a team on ReefWatch Miami, a project that uses technology to support marine conservation. These experiences allowed me to explore the intersection of coding, creativity, and real-world problem-solving. At UF, I'm continuing to grow my technical skills through the WiCSE First Byte Program and exploring opportunities to connect with other students in computer science. Outside of academics, I enjoy art, video games, and exploring new creative projects. I'm particularly interested in game development and the process of turning ideas into interactive experiences. I'm excited to keep learning, collaborate with others, and build projects that combine my interests in technology and creativity.",
+  aboutFacts: [
+    { label: 'Age', value: '18' },
+    { label: 'School', value: 'University of Florida' },
+    { label: 'Major', value: 'Computer Science' },
+    { label: 'Interested in', value: 'Game development' },
+  ],
   // Add, remove, or rename languages and tools in this list.
   skills: ['JavaScript', 'Python', 'React', 'HTML & CSS', 'Git & GitHub'],
   // Add a new project by copying one of these lines and changing its words.
   projects: [
-    { title: 'ReefWatch Miami', description: 'Interactive website to educate users about Miami’s marine life with an integrated Roboflow-trained fish identification model.', tag: 'Web Development'},
-    { title: 'Calculator', description: 'A simple calculator.', tag: 'Python project' },
-    { title: 'Your swamphacks project...', description: 'Coming Soon.', tag: 'TBD' },
+    { title: 'ReefWatch Miami', description: 'Interactive website to educate users about Miami’s marine life with an integrated Roboflow-trained fish identification model.', tag: 'HTML, CSS, JavaScript, p5.js, Google Apps Script'},
+    { title: 'Survive The Swamp', description: 'Web app that turns your syllabus into a multi subtask plan so you can get through the semester.', tag: 'Google Gemini API, Next.js, SupaBase, Tailwind-css, node.js, auth0, React, JavaScript' },
   ],
   // Add your social links here. You can remove any of these if you don't want them to show up.
   links: {
@@ -35,6 +41,34 @@ const firstName = siteInfo.name.split(' ')[0]
 
 // App is the main component, which means it describes the whole webpage.
 function App() {
+  const aboutSectionRef = useRef(null)
+  const projectsSectionRef = useRef(null)
+  const [aboutIsVisible, setAboutIsVisible] = useState(false)
+  const [projectsAreVisible, setProjectsAreVisible] = useState(false)
+
+  useEffect(() => {
+    const observeSection = (section, setVisible) => {
+      if (!section) return null
+
+      const observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true)
+          observer.disconnect()
+        }
+      }, { threshold: 0 })
+
+      observer.observe(section)
+      return observer
+    }
+
+    const observers = [
+      observeSection(aboutSectionRef.current, setAboutIsVisible),
+      observeSection(projectsSectionRef.current, setProjectsAreVisible),
+    ]
+
+    return () => observers.forEach((observer) => observer?.disconnect())
+  }, [])
+
   return (
     // className connects this HTML-like element to styles in App.css.
     <div className="site-shell">
@@ -56,22 +90,36 @@ function App() {
         </section>
 
         {/* This section explains who the person is and lists their skills. */}
-        <section className="section" id="about">
+        <section
+          className={`section about-section${aboutIsVisible ? ' is-visible' : ''}`}
+          id="about"
+          ref={aboutSectionRef}
+        >
           <div className="section-label">01 / About me</div>
 
-          <div className="section-content">
-            <h2>Curious by default.</h2>
-            <p>{siteInfo.about}</p>
+          <div className="about-layout">
+            <div className="section-content about-copy">
+              <h2>Curious by default.</h2>
+              <p>{siteInfo.about}</p>
+            </div>
 
-            {/* makes one bullet point for every item in siteInfo.skills. */}
-            <ul className="skill-list" aria-label="Skills">
-              {siteInfo.skills.map((skill) => <li key={skill}>{skill}</li>)}
-            </ul>
+            <div className="about-facts" aria-label="A few facts about me">
+              {siteInfo.aboutFacts.map((fact) => (
+                <article className="about-fact" key={fact.label}>
+                  <p className="about-fact-label">{fact.label}</p>
+                  <p className="about-fact-value">{fact.value}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* This section makes one project row for every project in the list. */}
-        <section className="section" id="projects">
+        <section
+          className={`section projects-section${projectsAreVisible ? ' is-visible' : ''}`}
+          id="projects"
+          ref={projectsSectionRef}
+        >
           <div className="section-label">02 / Selected work</div>
 
           <div className="section-content">
