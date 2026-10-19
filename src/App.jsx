@@ -26,8 +26,8 @@ const siteInfo = {
   skills: ['JavaScript', 'Python', 'React', 'HTML & CSS', 'Git & GitHub'],
   // Add a new project by copying one of these lines and changing its words.
   projects: [
-    { title: 'ReefWatch Miami', description: 'Interactive website to educate users about Miami’s marine life with an integrated Roboflow-trained fish identification model.', tag: 'HTML, CSS, JavaScript, p5.js, Google Apps Script'},
-    { title: 'Survive The Swamp', description: 'Web app that turns your syllabus into a multi subtask plan so you can get through the semester.', tag: 'Google Gemini API, Next.js, SupaBase, Tailwind-css, node.js, auth0, React, JavaScript' },
+    { title: 'ReefWatch Miami', description: 'Interactive website to educate users about Miami’s marine life with an integrated Roboflow-trained fish identification model.', tag: 'HTML, CSS, JavaScript, p5.js, Google Apps Script', url: 'https://micaela-mejia.github.io/ReefWatch-Miami/'},
+    { title: 'Survive The Swamp', description: 'Web app that turns your syllabus into a multi subtask plan so you can get through the semester.', tag: 'Google Gemini API, Next.js, SupaBase, Tailwind-css, node.js, auth0, React, JavaScript', url:'https://survivetheswamp.study' },
   ],
   // Add your social links here. You can remove any of these if you don't want them to show up.
   links: {
@@ -131,7 +131,11 @@ function App() {
                 <article className="project" key={project.title}>
                   <p className="project-number">0{index + 1}</p>
                   <p className="project-tag">{project.tag}</p>
-                  <h3>{project.title}</h3>
+                  <h3>
+                  <a href={project.url} target ="_blank" rel="noreferrer">
+                  {project.title}
+                  </a>
+                  </h3>
                   <p className="project-description">{project.description}</p>
                 </article>
               ))}
